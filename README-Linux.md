@@ -26,3 +26,29 @@ zsh 安装到 $HOME/bin 下面，并且会自动添加环境变量，但是重�
 ```
 echo 'export PATH="$HOME/bin:$HOME/.local/bin:$PATH"' >> ~/.bash_profile
 ```
+这样操作之后就可以在命令行使用 zsh 了，但是不会默认使用 zsh 作为交互程序。修改启动脚本，自动切换到 zsh （官方推荐的方式），将下面命令写入 ~/.bash_profile文件：
+```
+echo '[ -f $HOME/bin/zsh ] && exec $HOME/bin/zsh -l' >> ~/.bash_profile
+```
+加载环境配置并执行zsh交互方式：
+```
+source ~/.bash_profile
+```
+
+## 3. 安装oh-my-zsh
+```
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+```
+退出重新登录
+
+打开zsh配置文件
+```
+vi .zshrc
+```
+从该文件中找到下面的命令行，按i进入编辑模式，去掉开头的#，取消该行注释:
+```
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+```
+按esc调出vi命令，输入:wq保存并退出vi模式。
+
