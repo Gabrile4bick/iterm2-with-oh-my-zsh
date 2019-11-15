@@ -50,5 +50,5 @@ vi .zshrc
 ```
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 ```
-按esc调出vi命令，输入:wq保存并退出vi模式。
+按esc退出vi编辑模式，输入:wq保存并退出vi模式。
 
