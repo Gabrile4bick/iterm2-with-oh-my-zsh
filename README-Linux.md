@@ -123,3 +123,8 @@ cd autojump
 ```
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 ```
+
+**4) [z](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/z)：目录间快速跳转**
+
+参考：
+https://www.zcfy.cc/article/become-a-command-line-power-user-with-oh-my-zsh-and-z-920.html
