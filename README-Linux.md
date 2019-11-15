@@ -19,7 +19,7 @@ cd zsh-5.7.1
 make
 make install
 ```
-注意：这里可以先创建一个目录```mkdir ~/zsh```，把$HOME替换为```~/zsh```
+注意：这里在主目录`~`下面会生成三个新的目录`bin`，`lib`，`share`，可以先创建一个目录`mkdir ~/zsh`，把$HOME替换为`~/zsh`
 
 ## 2. 更新PATH（环境变量）
 zsh 安装到 $HOME/bin 下面，并且会自动添加环境变量，但是重新登陆后就找不到了。所以要手动更新 PATH ，将下面命令写入 ~/.bash_profile 文件。
@@ -30,7 +30,7 @@ echo 'export PATH="$HOME/bin:$HOME/.local/bin:$PATH"' >> ~/.bash_profile
 ```
 echo '[ -f $HOME/bin/zsh ] && exec $HOME/bin/zsh -l' >> ~/.bash_profile
 ```
-加载环境配置并执行zsh交互方式：
+加载环境配置并运行zsh交互方式(或者退出重新登录)：
 ```
 source ~/.bash_profile
 ```
@@ -40,8 +40,6 @@ source ~/.bash_profile
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 ```
-退出重新登录
-
 打开zsh配置文件
 ```
 vi .zshrc
@@ -52,3 +50,76 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 ```
 按esc退出vi编辑模式，输入:wq保存并退出vi模式。
 
+加载环境配置并运行oh-my-zsh（或者退出重新登录）：
+```
+source .zshrc
+```
+由于zsh⾥的vi打开文件无高亮显示，和vim有区别，我们用alias命令将vi替换成vim
+```
+alias vi='vim'
+```
+这样vi打开文件就有高亮显示了
+
+
+## 4. 主题修改与插件配置
+
+#### 主题修改
+```
+vi .zshrc
+```
+找到ZSH_THEME并修改为`agnoster`或者`ys`
+```
+ZSH_THEME="ys"
+```
+主题存放位置~/.oh-my-zsh/themes，可以进行选择
+
+#### 插件配置
+**1) zsh-autosuggestions：自动补全**
+```
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+**2) zsh-syntax-highlighting：语法高亮**
+```
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+这时我们需要再次打开.zshrc文件进行编辑
+```
+vi .zshrc
+```
+找到plugins，此时plugins中应该已经有了git，我们需要把自动补全、语法高亮插件也加上，请务必保证插件顺序，zsh-syntax-highlighting必须在最后一个。
+
+```
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+ )
+```
+然后在文件的最后添加：
+
+source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+按esc退出vi编辑模式，输入:wq保存并退出vi。
+
+执行下面命令使刚才的修改生效(或者退出重新登录)：
+```
+source .zshrc
+```
+
+**3) [autojump](https://github.com/wting/autojump)：快速跳转**
+
+下载：
+```
+git clone git://github.com/wting/autojump.git
+```
+安装：
+```
+cd autojump
+./install.py
+```
+最后把以下代码加入.zshrc：
+```
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
+```
