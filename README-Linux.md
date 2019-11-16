@@ -110,11 +110,11 @@ source .zshrc
 
 **3) [autojump](https://github.com/wting/autojump)：快速跳转**
 
-下载：
+* 下载：
 ```
 git clone git://github.com/wting/autojump.git
 ```
-安装：
+* 安装：
 ```
 cd autojump
 ./install.py
@@ -136,6 +136,19 @@ plugins=(
 最后把以下代码加入.zshrc：
 ```
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
+```
+这时我们需要再次打开.zshrc文件进行编辑
+```
+vi .zshrc
+```
+找到plugins，此时plugins中应该已经有了git，我们需要把自动补全、语法高亮插件也加上，请务必保证插件顺序，zsh-syntax-highlighting必须在最后一个。
+
+```
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+ )
 ```
 
 **4) [z](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/z)：目录间快速跳转**
