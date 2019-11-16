@@ -137,18 +137,11 @@ plugins=(
 ```
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 ```
-这时我们需要再次打开.zshrc文件进行编辑
-```
-vi .zshrc
-```
-找到plugins，此时plugins中应该已经有了git，我们需要把自动补全、语法高亮插件也加上，请务必保证插件顺序，zsh-syntax-highlighting必须在最后一个。
+按esc退出vi编辑模式，输入:wq保存并退出vi。
 
+执行下面命令使刚才的修改生效(或者退出重新登录)：
 ```
-plugins=(
-  git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
- )
+source .zshrc
 ```
 
 **4) [z](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/z)：目录间快速跳转**
