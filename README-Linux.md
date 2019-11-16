@@ -119,6 +119,20 @@ git clone git://github.com/wting/autojump.git
 cd autojump
 ./install.py
 ```
+这时我们需要再次打开.zshrc文件进行编辑
+```
+vi .zshrc
+```
+找到plugins，我们需要把autojump插件也加上。
+
+```
+plugins=(
+  git
+  autojump
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+ )
+```
 最后把以下代码加入.zshrc：
 ```
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
